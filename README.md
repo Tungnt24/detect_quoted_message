@@ -1,19 +1,37 @@
 # TEST
 
-![test1](https://user-images.githubusercontent.com/58006392/106608090-8e30e180-6596-11eb-9ec9-e92814819c88.png)
+python3 example.py
 
-detect "first message"
+# Usage
 
-### RUN
+## plain text
+```
+from main import detect_from_text
 
-``` python3 run.py """HTML code""" ```
+DATA = """
+okok
+On 2/18/21 8:46 AM, Tungnt wrote:
+> ok thaasy r nhe
+> 
+> On 2/18/21 8:46 AM, Tungnt24 wrote:
+>> đây là test plain text
+"""
 
-### EXAMPLE
+result = detect_from_text(DATA)
 
-![photo_2021-02-02_20-49-01](https://user-images.githubusercontent.com/58006392/106609425-1ebbf180-6598-11eb-8e89-6a1ea62cb804.jpg)
+#result == ['> ok thaasy r nhe', '> ', '> On 2/18/21 8:46 AM, Tungnt24 wrote:', '>> đây là test plain text']
+```
 
-#### result
+## html
+```
+from main import detect_from_html
 
-![photo_2021-02-02_20-50-21](https://user-images.githubusercontent.com/58006392/106609567-4ad77280-6598-11eb-9260-fade8379ff62.jpg)
+DATA = """
+<p>second message</p>\n<p>&nbsp;</p>\n<p>V&agrave;o 15:03, 28/01/2021,<strong>B</strong> &lt;<a href=\"mailto:nameB@gmail.com\" target=\"_blank\"rel=\"noopener\">nameB@gmail.com</a>&gt; đ&atilde; viết:</p>\n<blockquote>\n<div     
+dir=\"ltr\">first message</div></blockquote>
+"""
 
+result = detect_from_html(DATA)
 
+#result == ['> first message']
+```
